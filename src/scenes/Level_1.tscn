@@ -27,7 +27,7 @@ size = Vector3(3, 3, 1)
 material = ExtResource("3_bv0jg")
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 5.5, 5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 5.5, 5.5)
 size = Vector3(7, 9, 1)
 material = ExtResource("2_r162i")
 
@@ -51,7 +51,7 @@ visible = false
 material = ExtResource("5_gm4rx")
 
 [node name="CSGTorus3D2" type="CSGTorus3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 1.5, 11.5, 8.5)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 1.5, 11.5, 9.5)
 inner_radius = 4.5
 outer_radius = 5.5
 sides = 32
