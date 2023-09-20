@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://danplt6e8ihww"]
+
+[ext_resource type="PackedScene" uid="uid://bm2842uehx5wc" path="res://src/scenes/Level_1.tscn" id="1_t0tmv"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5hcko"]
+sky_top_color = Color(0.45098, 0.678431, 0.831373, 1)
+ground_bottom_color = Color(0, 0.0313726, 0, 1)
+
+[sub_resource type="Sky" id="Sky_4noq3"]
+sky_material = SubResource("ProceduralSkyMaterial_5hcko")
+
+[sub_resource type="Environment" id="Environment_s6cs4"]
+background_mode = 2
+sky = SubResource("Sky_4noq3")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Main" type="Node"]
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="Level1" parent="World" instance=ExtResource("1_t0tmv")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
+environment = SubResource("Environment_s6cs4")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World"]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
