@@ -1,0 +1,67 @@
+[gd_scene load_steps=10 format=3 uid="uid://ohp8fworknge"]
+
+[ext_resource type="Material" uid="uid://bp0dfu8momumq" path="res://src/materials/textures/White_Tiled_Texture.tres" id="1_daiq1"]
+[ext_resource type="Script" path="res://src/scripts/Hook.gd" id="1_nwteu"]
+[ext_resource type="Script" path="res://src/scripts/HookLinePath.gd" id="2_b8gbk"]
+[ext_resource type="Script" path="res://src/scripts/HookLinePolygon.gd" id="2_ds10s"]
+[ext_resource type="Material" uid="uid://c6342lh3ielqo" path="res://src/materials/textures/Red_Tiled_Texture.tres" id="5_6x1qa"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_65cqy"]
+radius = 0.15
+
+[sub_resource type="SphereMesh" id="SphereMesh_mplmn"]
+material = ExtResource("1_daiq1")
+radius = 0.15
+height = 0.3
+radial_segments = 16
+rings = 8
+
+[sub_resource type="Curve3D" id="Curve3D_wm21y"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="SphereMesh" id="SphereMesh_ock1d"]
+material = ExtResource("5_6x1qa")
+radius = 0.05
+height = 0.1
+radial_segments = 16
+rings = 8
+
+[node name="Hook" type="CharacterBody3D"]
+collision_layer = 8
+motion_mode = 1
+platform_on_leave = 2
+script = ExtResource("1_nwteu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_65cqy")
+
+[node name="Projectile" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_mplmn")
+
+[node name="Path3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_wm21y")
+script = ExtResource("2_b8gbk")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="."]
+calculate_tangents = false
+polygon = PackedVector2Array(0.05, 0, 0.0475528, 0.0154509, 0.0404509, 0.0293893, 0.0293893, 0.0404509, 0.0154509, 0.0475528, 3.06162e-18, 0.05, -0.0154509, 0.0475528, -0.0293893, 0.0404509, -0.0404509, 0.0293893, -0.0475528, 0.0154509, -0.05, 6.12323e-18, -0.0475528, -0.0154509, -0.0404509, -0.0293893, -0.0293893, -0.0404509, -0.0154509, -0.0475528, -9.18485e-18, -0.05, 0.0154509, -0.0475528, 0.0293893, -0.0404509, 0.0404509, -0.0293893, 0.0475528, -0.0154509)
+mode = 2
+path_node = NodePath("../Path3D")
+path_interval_type = 1
+path_interval = 1.0
+path_simplify_angle = 0.0
+path_rotation = 1
+path_local = true
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+smooth_faces = true
+script = ExtResource("2_ds10s")
+radius = 0.05
+
+[node name="Hand" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_ock1d")
