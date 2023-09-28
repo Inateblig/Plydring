@@ -3,7 +3,7 @@ extends CSGPolygon3D
 
 
 @export_range(0.01, 0.1) var radius: float = 0.1
-@export_range(3, 100, 1) var sides: int = 20
+@export_range(3, 100, 1) var sides: int = 8
 
 func _ready():
 	set_polygon(create_polygon(sides, radius))

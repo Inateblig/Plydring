@@ -1,11 +1,12 @@
 extends CharacterBody3D
 
 
-var SPEED: float = 5.0
-var MOUSE_SPEED: float = 0.005
-
 @onready var head: Node3D = get_node("Head")
 @onready var face: MeshInstance3D = head.get_node("Face")
+@onready var hooks: Array[Node] = get_tree().get_nodes_in_group("hook")
+
+var SPEED: float = 5.0
+var MOUSE_SPEED: float = 0.005
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -23,6 +24,10 @@ func _physics_process(dt):
 		Input.get_axis("forward", "backward"))
 
 	var direction = (transform.basis * inp_dir).normalized()
-	velocity = direction * SPEED
+
+	var hook_pull_velocity: Vector3 = Vector3.ZERO
+	for hook in hooks:
+		hook_pull_velocity += hook.pull_force(dt)
+	velocity = direction * SPEED + hook_pull_velocity
 
 	move_and_slide()

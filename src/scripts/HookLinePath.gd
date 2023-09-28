@@ -2,6 +2,8 @@ extends Path3D
 
 
 func set_path(points: PackedVector3Array):
-	curve.clear_points()
+	var curve3d: Curve3D = Curve3D.new()
+	curve3d.clear_points()
 	for point in points:
-		curve.add_point(point)
+		curve3d.add_point(point)
+	set_curve(curve3d)

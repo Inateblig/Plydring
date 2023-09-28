@@ -7,4 +7,8 @@
 
 [node name="HookLeft" parent="." instance=ExtResource("2_ro55g")]
 
+[node name="HookRight" parent="." instance=ExtResource("2_ro55g")]
+action_name = "hook_right"
+hand_offset = Vector3(0.6, 0, -0.5)
+
 [node name="CharacterBody3D" parent="." instance=ExtResource("1_qm07l")]
